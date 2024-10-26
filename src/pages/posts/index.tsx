@@ -2,9 +2,7 @@ import { GetStaticProps } from 'next'
 import PostsList from '@/components/PostsList'
 import Head from 'next/head'
 import { Post } from '@/types'
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
+import { getAllPosts } from '@/utils/posts'
 
 interface AllPostsProps {
   posts: Post[]
@@ -26,23 +24,12 @@ export default function AllPosts({ posts }: AllPostsProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const postsDirectory = path.join(process.cwd(), 'content')
-  const filenames = fs.readdirSync(postsDirectory)
-
-  const posts = filenames.map((filename) => {
-    const fullPath = path.join(postsDirectory, filename)
-    const fileContents = fs.readFileSync(fullPath, 'utf8')
-    const { data } = matter(fileContents)
-
-    const slug = filename.replace(/\.md$/, '')
-
-    return {
-      slug,
-      title: data.title || slug,
-      date: data.date,
-      url: data.url || slug,
-    }
-  })
+  const posts = getAllPosts().map(({ slug, title, date, url }) => ({
+    slug,
+    title,
+    date,
+    url,
+  }))
 
   posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 

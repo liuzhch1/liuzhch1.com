@@ -1,9 +1,7 @@
 import Head from 'next/head'
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
+import { getAllPosts } from '@/utils/posts'
 
 interface PostProps {
   title: string
@@ -35,27 +33,7 @@ export async function getStaticProps({
   console.log('Requested slug:', slug)
 
   try {
-    const postsDirectory = path.join(process.cwd(), 'content')
-
-    const filenames = fs.readdirSync(postsDirectory)
-
-    const posts = filenames
-      .map((filename) => {
-        const fullPath = path.join(postsDirectory, filename)
-        const fileContents = fs.readFileSync(fullPath, 'utf8')
-        const { data, content } = matter(fileContents)
-
-        const slug = filename.replace(/\.md$/, '')
-
-        return {
-          slug,
-          title: data.title || slug,
-          date: data.date,
-          url: data.url || slug,
-          content,
-        }
-      })
-      .filter((post) => post.url === slug)
+    const posts = getAllPosts().filter((post) => post.url === slug)
 
     if (posts.length === 0) {
       return { notFound: true }
@@ -83,18 +61,9 @@ export async function getStaticProps({
 }
 
 export async function getStaticPaths() {
-  const postsDirectory = path.join(process.cwd(), 'content')
-  const filenames = fs.readdirSync(postsDirectory)
+  const paths = getAllPosts().map((post) => ({
+    params: { slug: [post.url] },
+  }))
 
-  const paths = filenames.map((filename) => {
-    const fullPath = path.join(postsDirectory, filename)
-    const fileContents = fs.readFileSync(fullPath, 'utf8')
-    const { data } = matter(fileContents)
-    return {
-      params: { slug: [data.url || filename.replace(/\.md$/, '')] },
-    }
-  })
-
-  console.log('paths', JSON.stringify(paths, null, 2))
   return { paths, fallback: false }
 }
