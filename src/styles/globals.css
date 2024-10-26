@@ -19,3 +19,31 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.posts-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.posts-container h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.blog-post {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.blog-post h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.blog-post time {
+  display: block;
+  margin-bottom: 20px;
+  color: #666;
+}
