@@ -1,11 +1,10 @@
 import { GetStaticProps } from 'next'
 import PostsList from '@/components/PostsList'
 import Head from 'next/head'
-import { Post } from '@/types'
-import { getAllPosts } from '@/utils/posts'
+import { getAllPosts, PostData } from '@/utils/posts'
 
 interface AllPostsProps {
-  posts: Post[]
+  posts: PostData[]
 }
 
 export default function AllPosts({ posts }: AllPostsProps) {

@@ -10,6 +10,28 @@ export interface PostData {
   content: string
 }
 
+function parseDate(dateStr: string): string {
+  // Try parsing ISO format first (2024-08-12T20:58+08:00)
+  const isoDate = new Date(dateStr)
+  if (!isNaN(isoDate.getTime())) {
+    return isoDate.toISOString()
+  }
+
+  // Try parsing simple format (2024-10-31 12:52)
+  const [datePart, timePart] = dateStr.split(' ')
+  if (datePart && timePart) {
+    const [year, month, day] = datePart.split('-').map(Number)
+    const [hour, minute] = timePart.split(':').map(Number)
+    const parsedDate = new Date(year, month - 1, day, hour, minute)
+    if (!isNaN(parsedDate.getTime())) {
+      return parsedDate.toISOString()
+    }
+  }
+
+  // If both parsing attempts fail, throw an error
+  throw new Error(`Invalid date format: ${dateStr}`)
+}
+
 export function getAllPosts(): PostData[] {
   const postsDirectory = path.join(process.cwd(), 'content')
   const filenames = fs.readdirSync(postsDirectory)
@@ -24,7 +46,7 @@ export function getAllPosts(): PostData[] {
     return {
       slug,
       title: data.title || slug,
-      date: data.date,
+      date: parseDate(data.date ?? data.datetime),
       url: data.url || slug,
       content,
     }

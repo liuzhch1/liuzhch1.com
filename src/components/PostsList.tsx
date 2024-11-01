@@ -1,9 +1,9 @@
-import { Post } from '@/types'
+import { PostData } from '@/utils/posts'
 import Link from 'next/link'
 
 interface PostsListProps {
   limit?: number
-  posts: Post[]
+  posts: PostData[]
 }
 
 const PostsList: React.FC<PostsListProps> = ({ limit, posts }) => {
