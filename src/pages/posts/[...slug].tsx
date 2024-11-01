@@ -1,7 +1,14 @@
 import Head from 'next/head'
 import { remark } from 'remark'
-import html from 'remark-html'
+import rehype from 'remark-rehype'
+import html from 'rehype-stringify'
 import { getAllPosts } from '@/utils/posts'
+import remarkGfm from 'remark-gfm'
+import rehypeExternalLinks from 'rehype-external-links'
+import rehypeShiki from '@shikijs/rehype'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import rehypeSlug from 'rehype-slug'
+import { h } from 'hastscript'
 
 interface PostProps {
   title: string
@@ -15,11 +22,11 @@ export default function Post({ title, date, contentHtml }: PostProps) {
       <Head>
         <title>{title} | Joey's Blog</title>
       </Head>
-      <article className="blog-post">
-        <h1>{title}</h1>
-        <time>{new Date(date).toLocaleDateString()}</time>
-        <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
-      </article>
+      <h1 className="mb-0">{title}</h1>
+      <time className="text-sm text-gray-500">
+        {new Date(date).toLocaleDateString()}
+      </time>
+      <div className="mt-4" dangerouslySetInnerHTML={{ __html: contentHtml }} />
     </>
   )
 }
@@ -41,7 +48,27 @@ export async function getStaticProps({
     const post = posts[0]
 
     const { title, date, url, content } = post
-    const processedContent = await remark().use(html).process(content)
+    const processedContent = await remark()
+      .use(rehype)
+      .use(rehypeSlug)
+      .use(rehypeAutolinkHeadings, {
+        behavior: 'append',
+        properties: { class: 'head-anchor' },
+        content: h('span', '#'),
+      })
+      .use(remarkGfm)
+      .use(rehypeExternalLinks, {
+        target: '_blank',
+        rel: ['nofollow', 'noopener', 'noreferrer'],
+      })
+      .use(rehypeShiki, {
+        themes: {
+          light: 'min-light',
+          dark: 'material-theme-darker',
+        },
+      })
+      .use(html)
+      .process(content)
     const contentHtml = processedContent.toString()
 
     return {

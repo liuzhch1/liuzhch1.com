@@ -20,12 +20,15 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     return pathname === path ? 'page' : undefined
   }
 
+  // Check if we're on a single post page
+  const isPostPage = pathname?.startsWith('/posts/') && pathname !== '/posts'
+
   return (
-    <div className="max-w-[44rem] mx-auto">
+    <div className="max-w-[44em] mx-auto">
       <header
-        className={`flex justify-between p-4 pb-3.5 ${
-          pathname !== '/' ? 'pb-12' : 'pb-1'
-        }`}
+        className={`flex justify-between p-4 pb-3.5 transition-opacity duration-200 ${
+          pathname === '/' ? 'pb-1' : 'pb-12'
+        } ${isPostPage ? 'opacity-15 dark:opacity-20 hover:opacity-100' : ''}`}
       >
         <div className="flex items-center gap-4 box-border">
           <Link href="/" className="text-2xl font-bold no-underline">

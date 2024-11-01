@@ -3,39 +3,132 @@
 @tailwind utilities;
 
 :root {
+  --font-family: system-ui, -apple-system, sans-serif;
+  --font-family-monospace: Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono,
+    Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono,
+    Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New,
+    Courier, monospace, KaiTi, Kaiti SC;
+}
+
+:root {
   --background: #ffffff;
   --foreground: #171717;
+
+  --code-background-color: #f2f2f2;
+  --blockquote-color: #555555;
+
+  --background-color: #f9f9f9;
+  --a-color: #ccccff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+
+    --code-background-color: #313131;
+    --blockquote-color: #989c9c;
+
+    --background-color: #1f1f1f;
+    --a-color: #7861a3a7;
   }
+}
+
+html {
+  overflow-y: scroll;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.blog-post time {
-  display: block;
-  color: #666;
+  font-family: var(--font-family);
 }
 
 @layer base {
   h1 {
-    @apply text-3xl font-bold mb-3 mt-3;
+    @apply text-3xl font-semibold mb-1 mt-3;
   }
   h2 {
-    @apply text-2xl font-semibold mb-2 mt-2;
+    @apply text-2xl font-semibold mb-1 mt-3;
   }
   h3 {
-    @apply text-xl font-medium mb-1 mt-1;
+    @apply text-xl font-semibold mb-1 mt-2;
+  }
+  h4 {
+    @apply text-lg font-semibold mb-1 mt-1;
   }
   p {
-    @apply mb-3 mt-3;
+    @apply mb-3 mt-0;
   }
+  ul {
+    @apply list-disc pl-6 mb-2 mt-2;
+  }
+  li {
+    @apply mb-1;
+    line-height: 1.5;
+  }
+}
+
+html.dark .shiki,
+html.dark .shiki span {
+  color: var(--shiki-dark) !important;
+}
+
+pre {
+  @apply overflow-x-auto rounded-md p-3 mt-3 mb-3;
+  background-color: var(--background-color) !important;
+}
+
+a {
+  box-shadow: inset 0 -0.36em 0 var(--a-color);
+}
+a[href]:hover,
+a[href]:active {
+  background-color: var(--a-color);
+  box-shadow: none;
+}
+a[href].head-anchor,
+a[href].head-anchor:visited {
+  box-shadow: none;
+  color: transparent;
+}
+a[href].head-anchor:focus,
+a[href].head-anchor:hover {
+  text-decoration: underline;
+  box-shadow: none;
+}
+a[href].head-anchor:focus,
+:hover > a[href].head-anchor {
+  @apply text-gray-400;
+}
+header a {
+  box-shadow: none;
+  background-color: transparent !important;
+}
+
+:not(pre) > code {
+  font-family: var(--font-family-monospace);
+  font-size: 0.91em;
+  padding: 2px 4px;
+  background-color: var(--code-background-color);
+  border-radius: 3px;
+}
+
+blockquote {
+  color: var(--blockquote-color);
+  @apply pl-4;
+  border-left: 3px solid #ccc;
+}
+
+blockquote p {
+  display: inline;
+}
+
+.head-anchor {
+  text-decoration: none;
+  @apply ml-2;
+}
+
+strong em {
+  @apply mr-1;
 }

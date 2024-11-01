@@ -10,14 +10,11 @@ const PostsList: React.FC<PostsListProps> = ({ limit, posts }) => {
   const displayedPosts = limit ? posts.slice(0, limit) : posts
   const allPostsCount = posts.length
 
-  const formatDate = (date: string) => {
-    if (!date) return ''
-    const d = new Date(date)
-    return d.toLocaleString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    })
+  const formatDate = (d: Date) => {
+    const year = d.getFullYear()
+    const month = String(d.getMonth() + 1).padStart(2, '0')
+    const day = String(d.getDate()).padStart(2, '0')
+    return `${year}/${month}/${day}`
   }
 
   const startFrom = allPostsCount + 1
@@ -30,11 +27,11 @@ const PostsList: React.FC<PostsListProps> = ({ limit, posts }) => {
       <ol reversed className="postlist" style={postlistStyle}>
         {displayedPosts.map((post) => (
           <li key={post.url} className="postlist-item">
-            <Link href={`/posts/${post.url}`} className="postlist-link">
+            <Link href={`/posts/${post.url}`} className="postlist-link text-lg">
               {post.title}
             </Link>
-            <time className="postlist-date" dateTime={post.date}>
-              {formatDate(post.date)}
+            <time className="postlist-date ml-2 text-sm" dateTime={post.date}>
+              {formatDate(new Date(post.date))}
             </time>
           </li>
         ))}

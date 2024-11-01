@@ -16,7 +16,7 @@ export default function AllPosts({ posts }: AllPostsProps) {
         <meta name="description" content="All blog posts by Joey" />
       </Head>
       <div className="posts-container">
-        <h1>All Posts</h1>
+        <h1 className="text-2xl">All Posts</h1>
         <PostsList posts={posts} />
       </div>
     </>
