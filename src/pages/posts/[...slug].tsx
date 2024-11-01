@@ -37,7 +37,6 @@ export async function getStaticProps({
   params: { slug: string[] }
 }) {
   const slug = params.slug.join('/')
-  console.log('Requested slug:', slug)
 
   try {
     const posts = getAllPosts().filter((post) => post.url === slug)
@@ -80,7 +79,6 @@ export async function getStaticProps({
       },
     }
   } catch (error) {
-    console.error(`Error reading file for slug ${slug}:`, error)
     return {
       notFound: true,
     }

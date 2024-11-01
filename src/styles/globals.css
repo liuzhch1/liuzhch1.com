@@ -61,7 +61,7 @@ body {
     @apply mb-3 mt-0;
   }
   ul {
-    @apply list-disc pl-6 mb-2 mt-2;
+    @apply list-disc pl-6 mb-2 mt-1;
   }
   li {
     @apply mb-1;
