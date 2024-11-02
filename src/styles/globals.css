@@ -18,7 +18,7 @@
   --blockquote-color: #555555;
 
   --background-color: #f9f9f9;
-  --a-color: #ccccff;
+  --a-color: #ccccffad;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -46,7 +46,7 @@ body {
 
 @layer base {
   h1 {
-    @apply text-3xl font-semibold mb-1 mt-3;
+    @apply text-[27px] font-semibold mb-1 mt-3;
   }
   h2 {
     @apply text-2xl font-semibold mb-1 mt-3;
@@ -118,6 +118,7 @@ blockquote {
   color: var(--blockquote-color);
   @apply pl-4;
   border-left: 3px solid #ccc;
+  @apply mb-3 mt-0;
 }
 
 blockquote p {
@@ -131,4 +132,12 @@ blockquote p {
 
 strong em {
   @apply mr-1;
+}
+
+.postlist-item {
+  @apply mb-[11px] mt-2 font-medium;
+}
+
+img {
+  @apply cursor-pointer mt-3 mb-3;
 }
