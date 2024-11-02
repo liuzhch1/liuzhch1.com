@@ -22,7 +22,7 @@ export default function Post({ title, date, contentHtml }: PostProps) {
       <Head>
         <title>{title} | Joey's Blog</title>
       </Head>
-      <h1 className="mb-0">{title}</h1>
+      <h1 className="text-3xl mb-0">{title}</h1>
       <time className="text-sm text-gray-500">
         {new Date(date).toLocaleDateString()}
       </time>
@@ -47,6 +47,7 @@ export async function getStaticProps({
     const post = posts[0]
 
     const { title, date, url, content } = post
+    const contentWithReplacedImages = replaceLink(date, content)
     const processedContent = await remark()
       .use(rehype)
       .use(rehypeSlug)
@@ -67,7 +68,7 @@ export async function getStaticProps({
         },
       })
       .use(html)
-      .process(content)
+      .process(contentWithReplacedImages)
     const contentHtml = processedContent.toString()
 
     return {
@@ -92,4 +93,13 @@ export async function getStaticPaths() {
   }))
 
   return { paths, fallback: false }
+}
+
+const replaceLink = (date: string, content: string) => {
+  return content.replace(
+    /!\[\[(.*?)\.(jpg|png|jpeg)\|(\d+)\]\]/g,
+    (_, name, ext) => {
+      return `![${name}.${ext}](https://2f5bc65.webp.li/${new Date(date).getFullYear()}/${name}.${ext})`
+    },
+  )
 }
