@@ -99,7 +99,7 @@ const replaceLink = (date: string, content: string) => {
   return content.replace(
     /!\[\[(.*?)\.(jpg|png|jpeg)(?:\|(\d+))?\]\]/g,
     (_, name, ext) => {
-      return `![:scale 10%](https://2f5bc65.webp.li/${new Date(date).getFullYear()}/${name}.${ext})`
+      return `![${name}.${ext}](https://2f5bc65.webp.li/${new Date(date).getFullYear()}/${name}.${ext})`
     },
   )
 }
