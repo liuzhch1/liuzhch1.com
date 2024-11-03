@@ -139,5 +139,5 @@ strong em {
 }
 
 img {
-  @apply cursor-pointer mt-3 mb-3;
+  @apply cursor-pointer mt-3 mb-3 mx-auto max-h-[600px];
 }

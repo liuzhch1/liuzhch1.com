@@ -31,7 +31,7 @@ export function ImagePreview({ src, alt, onClose }: ImagePreviewProps) {
       <img
         src={src}
         alt={alt}
-        className="max-h-[80%] max-w-[80%] object-contain"
+        className="max-h-[95%] max-w-[80%] object-contain"
         onClick={(e) => {
           e.stopPropagation()
           onClose()
