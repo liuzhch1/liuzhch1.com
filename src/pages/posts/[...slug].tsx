@@ -49,7 +49,8 @@ export async function getStaticProps({
     const post = posts[0]
 
     const { title, date, url, content } = post
-    const contentWithReplacedImages = replaceLink(date, content)
+    const contentWithoutDataview = removeDataview(content)
+    const contentWithReplacedImages = replaceLink(date, contentWithoutDataview)
     const processedContent = await remark()
       .use(rehype)
       .use(rehypeSlug)
@@ -106,4 +107,8 @@ const replaceLink = (date: string, content: string) => {
       return `![${name}.${ext}](https://pub-b6229d3c7a914a1a8a4e5f22934aec67.r2.dev/${new Date(date).getFullYear()}/${name}.${ext})`
     },
   )
+}
+
+const removeDataview = (content: string) => {
+  return content.replace(/```dataview[\s\S]*?```/g, '')
 }
