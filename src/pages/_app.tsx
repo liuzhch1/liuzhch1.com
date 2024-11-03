@@ -40,6 +40,10 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider attribute="class">
       <Layout>
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/katex@latest/dist/katex.min.css"
+        />
         <Component {...pageProps} />
         {previewImage && (
           <ImagePreview

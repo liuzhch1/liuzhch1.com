@@ -9,6 +9,8 @@ import rehypeShiki from '@shikijs/rehype'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeSlug from 'rehype-slug'
 import { h } from 'hastscript'
+import rehypeKatex from 'rehype-katex'
+import remarkMath from 'remark-math'
 
 interface PostProps {
   title: string
@@ -67,6 +69,8 @@ export async function getStaticProps({
           dark: 'material-theme-darker',
         },
       })
+      .use(remarkMath)
+      .use(rehypeKatex)
       .use(html)
       .process(contentWithReplacedImages)
     const contentHtml = processedContent.toString()
@@ -99,7 +103,7 @@ const replaceLink = (date: string, content: string) => {
   return content.replace(
     /!\[\[(.*?)\.(jpg|png|jpeg)(?:\|(\d+))?\]\]/g,
     (_, name, ext) => {
-      return `![${name}.${ext}](https://2f5bc65.webp.li/${new Date(date).getFullYear()}/${name}.${ext})`
+      return `![${name}.${ext}](https://pub-b6229d3c7a914a1a8a4e5f22934aec67.r2.dev/${new Date(date).getFullYear()}/${name}.${ext})`
     },
   )
 }
