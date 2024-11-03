@@ -28,7 +28,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <header
         className={`flex justify-between p-4 pb-3.5 transition-opacity duration-200 ${
           pathname === '/' ? 'pb-1' : 'pb-12'
-        } ${isPostPage ? 'opacity-15 dark:opacity-20 hover:opacity-100' : ''}`}
+        } ${isPostPage ? 'opacity-10 dark:opacity-20 hover:opacity-100' : ''}`}
       >
         <div className="flex items-center gap-4 box-border">
           <Link href="/" className="text-2xl font-bold no-underline">
