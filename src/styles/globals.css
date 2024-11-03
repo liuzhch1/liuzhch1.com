@@ -81,6 +81,9 @@ pre {
 
 a {
   box-shadow: inset 0 -0.36em 0 var(--a-color);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 a[href]:hover,
 a[href]:active {
