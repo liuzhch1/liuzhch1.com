@@ -49,7 +49,7 @@ export async function getStaticProps({
     const post = posts[0]
 
     const { title, date, url, content } = post
-    const contentWithoutDataview = removeDataview(content)
+    const contentWithoutDataview = lineBreakAndRemoveDataview(content)
     const contentWithReplacedImages = replaceLink(date, contentWithoutDataview)
     const processedContent = await remark()
       .use(rehype)
@@ -109,6 +109,6 @@ const replaceLink = (date: string, content: string) => {
   )
 }
 
-const removeDataview = (content: string) => {
-  return content.replace(/```dataview[\s\S]*?```/g, '')
+const lineBreakAndRemoveDataview = (content: string) => {
+  return content.replace(/```dataview[\s\S]*?```/g, '').replace(/\n/g, '  \n')
 }
