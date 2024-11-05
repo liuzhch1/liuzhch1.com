@@ -11,6 +11,7 @@ import rehypeSlug from 'rehype-slug'
 import { h } from 'hastscript'
 import rehypeKatex from 'rehype-katex'
 import remarkMath from 'remark-math'
+import { Giscus } from '@/components/Giscus'
 
 interface PostProps {
   title: string
@@ -29,6 +30,9 @@ export default function Post({ title, date, contentHtml }: PostProps) {
         {new Date(date).toLocaleDateString()}
       </time>
       <div className="mt-4" dangerouslySetInnerHTML={{ __html: contentHtml }} />
+      <div className="mt-16">
+        <Giscus />
+      </div>
     </>
   )
 }
