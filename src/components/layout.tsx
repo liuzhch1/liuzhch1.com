@@ -1,5 +1,6 @@
 'use client'
 
+import Script from 'next/dist/client/script'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
@@ -53,6 +54,11 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             </Link>
           ))}
         </nav>
+        <Script
+          defer
+          src="/scripts/script.js"
+          data-website-id="428d2de9-9ee4-4391-b59e-1ab846697d13"
+        />
       </header>
       <main className="p-4 [&>:first-child]:mt-0">{children}</main>
     </div>
