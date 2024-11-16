@@ -1,3 +1,4 @@
+import { Giscus } from '@/components/Giscus'
 import Head from 'next/head'
 
 export default function About() {
@@ -26,6 +27,9 @@ export default function About() {
             </a>
           </li>
         </ul>
+      </div>
+      <div className="mt-16">
+        <Giscus />
       </div>
     </>
   )
