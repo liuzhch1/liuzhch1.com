@@ -8,6 +8,7 @@ export interface PostData {
   date: string
   url: string
   content: string
+  tags: string[]
 }
 
 function parseDate(dateStr: string): string {
@@ -40,6 +41,8 @@ export function getAllPosts(): PostData[] {
     const fullPath = path.join(postsDirectory, filename)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const { data, content } = matter(fileContents)
+    const tags = data.tags || []
+    console.log(tags)
 
     const slug = filename.replace(/\.md$/, '')
 
@@ -49,6 +52,7 @@ export function getAllPosts(): PostData[] {
       date: parseDate(data.date ?? data.datetime),
       url: data.url || slug,
       content,
+      tags,
     }
   })
 }

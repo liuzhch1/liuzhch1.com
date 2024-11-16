@@ -1,3 +1,4 @@
+import { formatDate } from '@/utils'
 import { PostData } from '@/utils/posts'
 import Link from 'next/link'
 
@@ -9,13 +10,6 @@ interface PostsListProps {
 const PostsList: React.FC<PostsListProps> = ({ limit, posts }) => {
   const displayedPosts = limit ? posts.slice(0, limit) : posts
   const allPostsCount = posts.length
-
-  const formatDate = (d: Date) => {
-    const year = d.getFullYear()
-    const month = String(d.getMonth() + 1).padStart(2, '0')
-    const day = String(d.getDate()).padStart(2, '0')
-    return `${year}/${month}/${day}`
-  }
 
   const startFrom = allPostsCount + 1
   const postlistStyle = {
@@ -31,7 +25,10 @@ const PostsList: React.FC<PostsListProps> = ({ limit, posts }) => {
               {post.title}
             </Link>
             <time className="postlist-date ml-2 text-sm" dateTime={post.date}>
-              {formatDate(new Date(post.date))}
+              {formatDate({
+                date: post.date,
+                time: post.tags.includes('moment'),
+              })}
             </time>
           </li>
         ))}

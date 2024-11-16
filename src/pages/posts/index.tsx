@@ -23,11 +23,12 @@ export default function AllPosts({ posts }: AllPostsProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = getAllPosts().map(({ slug, title, date, url }) => ({
+  const posts = getAllPosts().map(({ slug, title, date, url, tags }) => ({
     slug,
     title,
     date,
     url,
+    tags,
   }))
 
   posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())

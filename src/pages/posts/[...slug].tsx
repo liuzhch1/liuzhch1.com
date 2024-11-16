@@ -12,14 +12,16 @@ import { h } from 'hastscript'
 import rehypeKatex from 'rehype-katex'
 import remarkMath from 'remark-math'
 import { Giscus } from '@/components/Giscus'
+import { formatDate } from '@/utils'
 
 interface PostProps {
   title: string
   date: string
+  tags: string[]
   contentHtml: string
 }
 
-export default function Post({ title, date, contentHtml }: PostProps) {
+export default function Post({ title, date, tags, contentHtml }: PostProps) {
   return (
     <>
       <Head>
@@ -27,7 +29,7 @@ export default function Post({ title, date, contentHtml }: PostProps) {
       </Head>
       <h1 className="text-3xl mb-0">{title}</h1>
       <time className="text-sm text-gray-500">
-        {new Date(date).toLocaleDateString()}
+        {formatDate({ date, time: tags.includes('moment') })}
       </time>
       <div className="mt-4" dangerouslySetInnerHTML={{ __html: contentHtml }} />
       <div className="mt-16">
@@ -52,7 +54,7 @@ export async function getStaticProps({
     }
     const post = posts[0]
 
-    const { title, date, url, content } = post
+    const { title, date, url, content, tags } = post
     const contentWithoutDataview = lineBreakAndRemoveDataview(content)
     const contentWithReplacedImages = replaceLink(date, contentWithoutDataview)
     const processedContent = await remark()
@@ -84,6 +86,7 @@ export async function getStaticProps({
       props: {
         title,
         date,
+        tags,
         url,
         contentHtml,
       },
