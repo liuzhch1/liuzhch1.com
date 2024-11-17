@@ -42,7 +42,6 @@ export function getAllPosts(): PostData[] {
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const { data, content } = matter(fileContents)
     const tags = data.tags || []
-    console.log(tags)
 
     const slug = filename.replace(/\.md$/, '')
 

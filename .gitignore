@@ -41,3 +41,6 @@ next-env.d.ts
 
 # IDE
 .idea
+
+# Feed
+feed.xml

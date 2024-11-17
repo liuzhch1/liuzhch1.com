@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
 import Head from 'next/head'
+import { IcBaselineRssFeed } from './IcBaselineRssFeed'
 
 interface NavLink {
   path: string
@@ -49,7 +50,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               <Link
                 key={link.path}
                 href={link.path}
-                className={`text-lg font-medium ml-4 mr-4 leading-normal hover:underline ${
+                className={`text-lg font-medium leading-normal hover:underline mx-4 ${
                   isCurrentPage(link.path)
                     ? 'underline text-gray-900 dark:text-gray-200'
                     : 'no-underline text-gray-500 dark:text-gray-400'
@@ -58,6 +59,16 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 {link.text}
               </Link>
             ))}
+            <Link
+              href="/feed.xml"
+              className="text-lg font-medium leading-normal hover:underline mx-2"
+            >
+              <IcBaselineRssFeed
+                width="1.45rem"
+                height="1.45rem"
+                className="text-gray-500 dark:text-gray-400"
+              />
+            </Link>
           </nav>
           <Script
             defer

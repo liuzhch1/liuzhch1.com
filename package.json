@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "tsx src/scripts/generate-rss.ts && next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "feed": "^4.2.2",
     "hastscript": "^9.0.0",
     "next": "15.0.1",
     "next-themes": "^0.3.0",
@@ -38,6 +39,7 @@
     "prettier": "^3.3.3",
     "shiki": "^1.22.2",
     "tailwindcss": "^3.4.14",
+    "tsx": "^4.19.2",
     "typescript": "^5.6.3"
   },
   "packageManager": "pnpm@9.12.2"
