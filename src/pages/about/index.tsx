@@ -1,5 +1,5 @@
-import { Giscus } from '@/components/Giscus'
 import Head from 'next/head'
+import Remark42 from '@/components/Remark42'
 
 export default function About() {
   return (
@@ -28,9 +28,7 @@ export default function About() {
           </li>
         </ul>
       </div>
-      <div className="mt-16">
-        <Giscus />
-      </div>
+      <Remark42 />
     </>
   )
 }

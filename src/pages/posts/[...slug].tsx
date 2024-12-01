@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import { processContent } from '@/utils/markdown'
 import { getAllPosts } from '@/utils/posts'
-import { Giscus } from '@/components/Giscus'
 import { formatDate } from '@/utils'
+import Remark42 from '@/components/Remark42'
 
 interface PostProps {
   title: string
@@ -22,9 +22,7 @@ export default function Post({ title, date, tags, contentHtml }: PostProps) {
         {formatDate({ date, time: tags.includes('moment') })}
       </time>
       <div className="mt-4" dangerouslySetInnerHTML={{ __html: contentHtml }} />
-      <div className="mt-16">
-        <Giscus />
-      </div>
+      <Remark42 />
     </>
   )
 }
