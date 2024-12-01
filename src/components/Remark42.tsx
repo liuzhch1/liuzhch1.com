@@ -1,13 +1,42 @@
-import Script from 'next/dist/client/script'
 import { useEffect } from 'react'
 
 export default function Remark42() {
+  const remark_config = {
+    host: 'https://remark42.liuzhch1.com',
+    site_id: 'liuzhch1.com',
+    components: ['embed'],
+    max_shown_comments: 100,
+    theme: 'light',
+    locale: 'en',
+    show_email_subscription: false,
+    simple_view: true,
+    no_footer: false,
+  }
+
   useEffect(() => {
+    window.remark_config = remark_config
+    remark_config.theme = document.documentElement.classList.contains('dark')
+      ? 'dark'
+      : 'light'
+
+    const remark42 = window.REMARK42
+    if (remark42) {
+      remark42.destroy()
+      remark42.createInstance(remark_config)
+    } else {
+      for (const component of remark_config.components) {
+        const s = document.createElement('script')
+        s.src = `${remark_config.host}/web/${component}.mjs`
+        s.type = 'module'
+        s.defer = true
+        document.head.appendChild(s)
+      }
+    }
+
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.target instanceof HTMLElement) {
           const isDark = mutation.target.classList.contains('dark')
-          // @ts-expect-error Remark42 global type not defined
           window.REMARK42?.changeTheme(isDark ? 'dark' : 'light')
         }
       })
@@ -27,7 +56,6 @@ export default function Remark42() {
         <div className="h-0.5 bg-gray-200 dark:bg-gray-700 mx-auto w-[48%]"></div>
         <div className="pt-3 pb-1 text-lg font-bold">Comments</div>
         <div id="remark42"></div>
-        <Script defer src="/scripts/remark42.js" />
       </div>
     </>
   )
