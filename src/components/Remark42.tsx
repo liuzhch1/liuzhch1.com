@@ -4,6 +4,7 @@ export default function Remark42() {
   const remark_config = {
     host: 'https://remark42.liuzhch1.com',
     site_id: 'liuzhch1.com',
+    url: '',
     components: ['embed'],
     max_shown_comments: 100,
     theme: 'light',
@@ -15,6 +16,7 @@ export default function Remark42() {
 
   useEffect(() => {
     window.remark_config = remark_config
+    remark_config.url = window.location.pathname
     remark_config.theme = document.documentElement.classList.contains('dark')
       ? 'dark'
       : 'light'
