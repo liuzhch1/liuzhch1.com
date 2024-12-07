@@ -5,6 +5,7 @@ import remarkGfm from 'remark-gfm'
 import rehypeExternalLinks from 'rehype-external-links'
 import rehypeKatex from 'rehype-katex'
 import remarkMath from 'remark-math'
+import { rehypeVideo } from './rehype-video'
 
 export const processContent = async (
   date: string,
@@ -19,7 +20,7 @@ export const processContent = async (
     .replace(/\n/g, '  \n')
 
   const contentWithReplacedImages = contentWithoutDataview.replace(
-    /!\[\[(.*?)\.(jpg|png|jpeg)(?:\|(\d+))?\]\]/g,
+    /!\[\[(.*?)\.(jpg|png|jpeg|mp4)(?:\|(\d+))?\]\]/g,
     (_, name, ext) => {
       return `![${name}.${ext}](https://pub-b6229d3c7a914a1a8a4e5f22934aec67.r2.dev/${new Date(date).getFullYear()}/${name}.${ext})`
     },
@@ -34,6 +35,7 @@ export const processContent = async (
     })
     .use(remarkMath)
     .use(rehypeKatex)
+    .use(rehypeVideo)
 
   if (options?.useShiki) {
     const rehypeShiki = (await import('@shikijs/rehype')).default

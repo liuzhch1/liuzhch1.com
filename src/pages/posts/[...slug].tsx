@@ -3,6 +3,8 @@ import { processContent } from '@/utils/markdown'
 import { getAllPosts } from '@/utils/posts'
 import { formatDate } from '@/utils'
 import Remark42 from '@/components/Remark42'
+import Script from 'next/script'
+import { useEffect } from 'react'
 
 interface PostProps {
   title: string
@@ -11,11 +13,28 @@ interface PostProps {
   contentHtml: string
 }
 
+declare global {
+  interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    Plyr: any
+  }
+}
+
 export default function Post({ title, date, tags, contentHtml }: PostProps) {
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.Plyr) {
+      const player = new window.Plyr('#player')
+      return () => {
+        player.destroy()
+      }
+    }
+  }, [])
+
   return (
     <>
       <Head>
         <title>{title} | Joey's Blog</title>
+        <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
       </Head>
       <h1 className="text-3xl mb-0">{title}</h1>
       <time className="text-sm text-gray-500">
@@ -23,6 +42,15 @@ export default function Post({ title, date, tags, contentHtml }: PostProps) {
       </time>
       <div className="mt-4" dangerouslySetInnerHTML={{ __html: contentHtml }} />
       <Remark42 />
+      <Script
+        src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"
+        strategy="lazyOnload"
+        onLoad={() => {
+          if (document.querySelector('#player')) {
+            new window.Plyr('#player')
+          }
+        }}
+      />
     </>
   )
 }
