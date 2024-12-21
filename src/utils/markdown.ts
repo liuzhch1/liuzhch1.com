@@ -24,7 +24,7 @@ export const processContent = async (
   const contentWithReplacedImages = contentWithoutDataview.replace(
     /!\[\[(.*?)\.(jpg|png|jpeg|mp4)(?:\|(\d+))?\]\]/g,
     (_, name, ext, width) => {
-      const url = `https://pub-b6229d3c7a914a1a8a4e5f22934aec67.r2.dev/${new Date(date).getFullYear()}/${name}.${ext}`
+      const url = `https://img.liuzhch1.com/${new Date(date).getFullYear()}/${name}.${ext}`
       return width
         ? `<img src="${url}" alt="${name}.${ext}" width="${width}px" />`
         : `<img src="${url}" alt="${name}.${ext}" />`
