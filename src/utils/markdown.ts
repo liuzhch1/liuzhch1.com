@@ -40,9 +40,9 @@ export const processContent = async (
     })
     .use(remarkMath)
     .use(rehypeKatex)
-    .use(rehypeVideo)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeRaw)
+    .use(rehypeVideo)
 
   if (options?.useShiki) {
     const rehypeShiki = (await import('@shikijs/rehype')).default
