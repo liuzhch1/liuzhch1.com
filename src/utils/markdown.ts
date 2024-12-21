@@ -19,7 +19,7 @@ export const processContent = async (
 ) => {
   const contentWithoutDataview = content
     .replace(/```dataview[\s\S]*?```/g, '')
-    .replace(/\n/g, '  \n')
+    .replace(/(?<!]])\n/g, '  \n')
 
   const contentWithReplacedImages = contentWithoutDataview.replace(
     /!\[\[(.*?)\.(jpg|png|jpeg|mp4)(?:\|(\d+))?\]\]/g,
