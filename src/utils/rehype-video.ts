@@ -14,7 +14,7 @@ export function rehypeVideo() {
         node.properties = {
           id: 'player',
           playsinline: true,
-          controls: false,
+          controls: true,
         }
         node.children = [
           {

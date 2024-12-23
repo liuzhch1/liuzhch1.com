@@ -1,20 +1,14 @@
+import { TZDate } from '@date-fns/tz'
+import { format, parseISO } from 'date-fns'
+
 export const formatDate = ({
   date,
-  time = false,
+  time = true,
 }: {
   date: Date | string
   time?: boolean
 }): string => {
-  if (typeof date === 'string') {
-    date = new Date(date)
-  }
-  const year = date.getFullYear()
-  const month = String(date.getMonth() + 1).padStart(2, '0')
-  const day = String(date.getDate()).padStart(2, '0')
-  if (time) {
-    const hour = String(date.getHours()).padStart(2, '0')
-    const minute = String(date.getMinutes()).padStart(2, '0')
-    return `${year}/${month}/${day} ${hour}:${minute}`
-  }
-  return `${year}/${month}/${day}`
+  const parsedDate = typeof date === 'string' ? parseISO(date) : date
+  const tzDate = new TZDate(parsedDate, 'Asia/Shanghai')
+  return format(tzDate, time ? 'yyyy/MM/dd HH:mm' : 'yyyy/MM/dd')
 }

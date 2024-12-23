@@ -1,6 +1,7 @@
 import { Feed } from 'feed'
 import { getAllPosts } from './posts'
 import { processContent } from '@/utils/markdown'
+import { formatDate } from '.'
 
 export async function generateRssFeed() {
   const posts = getAllPosts()
@@ -39,7 +40,7 @@ export async function generateRssFeed() {
         description: post.content.slice(0, 200),
         content: contentHtml,
         author: [author],
-        date: new Date(post.date),
+        date: new Date(formatDate({ date: post.date })),
       })
     }),
   )
