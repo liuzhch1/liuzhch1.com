@@ -25,7 +25,7 @@ export async function generateRssFeed() {
     copyright: `CC BY-NC-SA 4.0 2024-PRESENT Joey Liu`,
     updated: date,
     feedLinks: {
-      rss: `${siteURL}/rss.xml`,
+      rss: `${siteURL}/feed.xml`,
     },
     author,
   })
