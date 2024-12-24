@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "NODE_ENV=development next dev --turbopack",
     "build": "tsx src/scripts/generate-rss.ts && next build",
     "start": "next start",
     "lint": "next lint"
