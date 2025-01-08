@@ -70,17 +70,20 @@ export default function Home() {
           <a href="https://www.aseprite.org/" target="_blank">
             Aseprite
           </a>
-          。 大学时期有一些{' '}
+          。大学时期有一些{' '}
           <a href="https://github.com/liuzhch1/UnityProject" target="_blank">
             Unity 经历
           </a>
           。 <br />
-          我比较熟悉 coding，偏好 2D
-          游戏，如果你正在做有意思的游戏项目，请联系我{' '}
+          我比较熟悉 coding，偏好 2D 游戏。这是我的{' '}
+          <a href="https://apps.quanticfoundry.com/s/my8fmm" target="_blank">
+            Quantic 玩家类型
+          </a>
+          ，喜欢动作、挑战和成就。 如果你正在做有意思的游戏项目，请联系我{' '}
           <code>hi@liuzhch1.com</code>。
         </p>
         <p className="text-gray-400 text-xs m-0 mt-6 flex justify-end">
-          本页更新于 2025.01.07
+          本页更新于 2025.01.08
         </p>
       </div>
     </>
