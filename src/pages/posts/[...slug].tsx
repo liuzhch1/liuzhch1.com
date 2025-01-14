@@ -5,6 +5,7 @@ import { formatDate } from '@/utils'
 import Remark42 from '@/components/Remark42'
 import Script from 'next/script'
 import { useEffect } from 'react'
+import mediumZoom from 'medium-zoom'
 
 interface PostProps {
   title: string
@@ -21,6 +22,16 @@ declare global {
 }
 
 export default function Post({ title, date, tags, contentHtml }: PostProps) {
+  useEffect(() => {
+    const zoom = mediumZoom('img', {
+      margin: 20,
+      background: 'rgba(1, 1, 1, 0.6)',
+    })
+    return () => {
+      zoom.detach()
+    }
+  }, [])
+
   useEffect(() => {
     if (typeof window !== 'undefined' && window.Plyr) {
       const player = new window.Plyr('#player')
