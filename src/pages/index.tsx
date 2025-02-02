@@ -31,59 +31,42 @@ export default function Home() {
           <a href="https://www.cursor.com/" target="_blank">
             Cursor
           </a>{' '}
-          来高效写码、和 ChatGPT{' '}
-          <a href="https://chatgpt.com/" target="_blank">
-            o1
-          </a>{' '}
-          来探讨有趣的话题，o1 真的比 4o 强了不少。一个月前我会推荐 Claude 的
-          sonnet 3.5，但是前段时间它把我号封了，最近只在用 API。
+          来高效写码、和{' '}
+          <a href="https://www.deepseek.com/" target="_blank">
+            DeepSeek R1
+          </a>
+          来探讨各种话题。DS真的挺强的，挑战到o1的地位，而且还开放了模型，可以
+          <a href="https://ollama.com/library/deepseek-r1" target="_blank">
+            本地试玩蒸馏版本
+          </a>
+          。难以想象它居然成为了春节的热点话题，同学、家人都在问。
+          <br />
+          半个月前我会推荐 Claude 的 sonnet 3.5，但是 R1 出来之后，它就失宠了。
         </p>
         <p className="text-lg m-0 mt-4">
-          我是一个单机游戏爱好者。喜欢有挑战性的游戏，比如{' '}
-          <a href="https://store.steampowered.com/app/814380" target="_blank">
-            只狼
+          我是单机游戏爱好者。喜欢有挑战性的游戏，比如只狼、Sifu
+          。还有独立游戏，比如动物井、武士零和蔚蓝。前段时间拿下了武士零的
+          <a
+            href="https://liuzhch1.com/posts/katana-zero-speedrun"
+            target="_blank"
+          >
+            速通成就
           </a>
-          、
-          <a href="https://store.steampowered.com/app/2138710" target="_blank">
-            师傅
-          </a>
-          。还有独立游戏，比如{' '}
-          <a href="https://store.steampowered.com/app/813230" target="_blank">
-            动物井
-          </a>
-          、
-          <a href="https://store.steampowered.com/app/460950" target="_blank">
-            武士零
-          </a>{' '}
-          和{' '}
-          <a href="https://store.steampowered.com/app/504230" target="_blank">
-            蔚蓝
-          </a>
-          。这几天在磨 武士零 的最后一个速通成就。
+          。
         </p>
         <p className="text-lg m-0 mt-4">
-          <strong>最近痴迷游戏开发</strong>，正在学习{' '}
-          <a href="https://godotengine.org/" target="_blank">
-            Godot
-          </a>{' '}
-          和{' '}
-          <a href="https://www.aseprite.org/" target="_blank">
-            Aseprite
-          </a>
+          <strong>最近痴迷游戏开发</strong>，正在玩 Godot 和 Aseprite
           。大学时期有一些{' '}
           <a href="https://github.com/liuzhch1/UnityProject" target="_blank">
             Unity 经历
           </a>
           。 <br />
-          我比较熟悉 coding，偏好 2D 游戏。这是我的{' '}
-          <a href="https://apps.quanticfoundry.com/s/my8fmm" target="_blank">
-            Quantic 玩家类型
-          </a>
-          ，喜欢动作、挑战和成就。 如果你正在做有意思的游戏项目，请联系我{' '}
+          我比较熟悉 coding，偏好 2D 游戏。我喜欢动作、挑战和成就类型游戏。
+          如果你正在做有意思的游戏项目，可以联系我加入{' '}
           <code>hi@liuzhch1.com</code>。
         </p>
         <p className="text-gray-400 text-xs m-0 mt-6 flex justify-end">
-          本页更新于 2025.01.08
+          本页更新于 2025.02.02
         </p>
       </div>
     </>
