@@ -85,7 +85,7 @@ pre {
 }
 
 a {
-  box-shadow: inset 0 -0.36em 0 var(--a-color);
+  box-shadow: inset 0 -0.3em 0 var(--a-color);
   word-wrap: break-word;
   overflow-wrap: break-word;
   word-break: break-word;
@@ -143,8 +143,7 @@ strong em {
 }
 
 .postlist-item {
-  @apply mb-[11px] mt-5 font-medium relative;
-  padding-left: 0.3rem;
+  @apply mt-4 font-medium relative;
 }
 
 img {

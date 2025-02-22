@@ -2,9 +2,11 @@ import { TZDate } from '@date-fns/tz'
 import { format, parseISO } from 'date-fns'
 
 export const formatDate = ({
+  year = false,
   date,
   time = true,
 }: {
+  year?: boolean
   date: Date | string
   time?: boolean
 }): string => {
@@ -13,5 +15,5 @@ export const formatDate = ({
   if (process.env.NODE_ENV !== 'development') {
     tzDate.setHours(tzDate.getHours() - 8)
   }
-  return format(tzDate, time ? 'yyyy/MM/dd HH:mm' : 'yyyy/MM/dd')
+  return format(tzDate, year ? 'yyyy/MM/dd' : time ? 'MM/dd HH:mm' : 'MM/dd')
 }

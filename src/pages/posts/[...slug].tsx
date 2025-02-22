@@ -49,7 +49,7 @@ export default function Post({ title, date, tags, contentHtml }: PostProps) {
       </Head>
       <h1 className="text-3xl mb-0">{title}</h1>
       <time className="text-sm text-gray-500">
-        {formatDate({ date, time: tags.includes('moment') })}
+        {formatDate({ date, time: tags.includes('moment'), year: true })}
       </time>
       <div className="mt-4" dangerouslySetInnerHTML={{ __html: contentHtml }} />
       <Remark42 />

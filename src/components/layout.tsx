@@ -14,10 +14,7 @@ interface NavLink {
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const pathname = usePathname()
-  const links: NavLink[] = [
-    { path: '/posts', text: 'Posts' },
-    { path: '/about', text: 'About' },
-  ]
+  const links: NavLink[] = [{ path: '/about', text: 'About' }]
 
   const isCurrentPage = (path: string): 'page' | undefined => {
     return pathname === path ? 'page' : undefined
