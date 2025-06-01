@@ -40,7 +40,7 @@ export async function generateRssFeed() {
         description: post.content.slice(0, 200),
         content: contentHtml,
         author: [author],
-        date: new Date(formatDate({ date: post.date })),
+        date: new Date(formatDate({ year: true, date: post.date })),
       })
     }),
   )
