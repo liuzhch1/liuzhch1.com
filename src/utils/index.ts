@@ -15,5 +15,8 @@ export const formatDate = ({
   if (process.env.NODE_ENV !== 'development') {
     tzDate.setHours(tzDate.getHours() - 8)
   }
-  return format(tzDate, year ? 'yyyy/MM/dd' : time ? 'MM/dd HH:mm' : 'MM/dd')
+  return format(
+    tzDate,
+    (year ? 'yyyy/' : '') + (time ? 'MM/dd HH:mm' : 'MM/dd'),
+  )
 }
