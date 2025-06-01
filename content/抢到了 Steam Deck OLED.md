@@ -1,6 +1,8 @@
 ---
 datetime: 2024-12-15T13:10:00
-tags: 
+tags:
+  - game
+  - life
 url: steam-deck-oled
 publish: true
 ---

@@ -1,7 +1,7 @@
 ---
 date: 2023-12-25
 tags:
-  - Python
+  - python
 publish: true
 url: everything-is-object-in-python
 ---

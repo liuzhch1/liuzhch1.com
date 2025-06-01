@@ -2,6 +2,7 @@
 datetime: 2024-02-06 13:18
 tags:
   - reading
+  - python
 publish: true
 url: sort-million-integers-in-2mb-using-python
 ---

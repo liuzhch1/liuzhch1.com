@@ -1,6 +1,6 @@
 ---
 tags:
-  - Game
+  - game
 date: 2024-06-29T18:36+08:00
 publish: true
 title: "EldenRing: 量大管饱的史诗巨作(但是撑吐了"

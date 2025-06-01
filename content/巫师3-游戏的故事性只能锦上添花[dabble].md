@@ -1,7 +1,7 @@
 ---
 url: the-witcher-3-story-could-only-be-a-bonus
 tags:
-  - Game
+  - game
 date: 2024-08-05T21:06+08:00
 publish: true
 ---

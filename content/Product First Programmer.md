@@ -1,7 +1,7 @@
 ---
 datetime: 2024-02-02 10:12
 tags:
-  - grow
+  - dev
 publish: true
 url: product-first-programmer
 ---
